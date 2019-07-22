@@ -8,9 +8,9 @@ const VhSection = styled.section`
   height: 100vh;
 `;
 
-export const Section2 = ({ children }) => {
+export const Section3 = ({ children }) => {
   return (
-    <section id="section_2">
+    <section id="section_3">
       <Container maxWidth="md">
         {children || ''}
       </Container>
