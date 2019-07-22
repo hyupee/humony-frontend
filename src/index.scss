@@ -1,10 +1,14 @@
 @import url("https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css");
 
+$main-color: #5f3dc4;
+$sub-color: #362bbc;
+
 * {
   margin: 0;
   padding: 0;
   color: #333;
   box-sizing: border-box;
+  font-size: 14px;
 }
 
 body {
@@ -19,4 +23,41 @@ a {
 
 li {
   list-style: none;
+}
+
+.bg-text {
+  padding: 5px;
+  border-radius: 4px;
+  color: #fff;
+
+  background: $main-color;
+}
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 200;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 7px 12px;
+  font-size: 13px;
+  line-height: 1.5384616;
+  border-radius: 3px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.btn-main {
+  color: #fff;
+  background-color: $main-color;
 }

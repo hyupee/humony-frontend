@@ -5,7 +5,7 @@ import Intro from '../components/Intro';
 const MainPage = () => {
 	return (
 		<PageTemplate>
-				<Intro/>
+			<Intro/>
 		</PageTemplate>
 	);
 };

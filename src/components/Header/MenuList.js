@@ -1,24 +1,14 @@
 import React from 'react';
 import Menu from './Menu';
-import propTypes from 'prop-types';
 
 const MenuList = ({ menuList }) => {
   return (
-    <ul className="gnb_list">
+    <ul className="gnb-list">
       {
-        menuList.map((menu, idx) => <Menu key={idx} name={menu.name} url={menu.href} />)
+        menuList.map((menu, idx) => <li><Menu key={idx} name={menu.name} url={menu.href} /></li>)
       }
     </ul>
   );
-};
-
-MenuList.propTypes = {
-  menuList: propTypes.arrayOf(
-    propTypes.shape({
-      name: propTypes.string,
-      href: propTypes.string,
-    })
-  ),
 };
 
 export default MenuList;

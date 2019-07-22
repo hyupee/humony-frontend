@@ -1,0 +1,38 @@
+#section_1 {
+  background: linear-gradient(rgba(#5f3dc4, 0.2), rgba(#5f3dc4, 0.2)), url('../../assets/images/3.jpeg') center no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+
+  .main_info {
+    width: 100%;
+
+    h2.main_title {
+      color: #fff;
+      font-size: 3.5rem;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 100px;
+      text-shadow: 3px 3px 7px rgba(0,0,0,.4);
+
+      span {
+        font-size: 3.5rem;
+      }
+    }
+
+    .btn {
+      width: 260px;
+      padding: 15px 0;
+      display: block;
+      margin: 0 auto;
+      font-size: 1.8rem;
+    }
+
+  }
+}
+
+
+#section_2 {
+  background: url('../../assets/images/1.jpeg') center;
+  background-size: cover;
+}
