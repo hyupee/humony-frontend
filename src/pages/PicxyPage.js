@@ -1,13 +1,13 @@
 import React from 'react';
 import PageTemplate from '../components/PageTemplate';
-import Intro from '../components/Intro';
+import Picxy from '../components/Picxy';
 
-const MainPage = () => {
+const PicxyPage = () => {
 	return (
 		<PageTemplate>
-			<Intro/>
+			<Picxy/>
 		</PageTemplate>
 	);
 };
 
-export default MainPage;
+export default PicxyPage;

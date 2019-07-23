@@ -59,7 +59,7 @@ const Main = () => {
       <MainSection.Section1>
         <div className="main_info">
           <h2 className="main_title">당신의 사진을 분할해 드립니다.</h2>
-          <Link to="" className="btn btn-main">시작하기</Link>
+          <Link to="/picxy" className="btn btn-main">시작하기</Link>
         </div>
       </MainSection.Section1>
       <MainSection.Section2>
