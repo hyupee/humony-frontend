@@ -1,4 +1,6 @@
 .section_title_box {
+  position: relative;
+  
   .section_title {
     font-size: 3.4rem;
     font-weight: 300;
@@ -17,7 +19,7 @@
 
 
 #section_1 {
-  background: linear-gradient(rgba(#5f3dc4, .5), rgba(#5f3dc4, 0.1)), url('../../assets/images/3.jpeg') center no-repeat;
+  background: linear-gradient(rgba(#5f3dc4, .5), rgba(#5f3dc4, 0.1)), url('../../assets/images/5.jpg') center no-repeat;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -27,11 +29,11 @@
 
     h2.main_title {
       color: #fff;
-      font-size: 3.8rem;
+      font-size: 3.6rem;
       font-weight: 300;
       text-align: center;
       margin-bottom: 100px;
-      text-shadow: 3px 3px 7px rgba(0,0,0,.4);
+      text-shadow: 3px 3px 7px rgba(0,0,0,.6);
 
       span {
         font-size: 3.5rem;
