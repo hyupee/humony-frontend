@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../Header';
+import Footer from '../Footer';
 
 const PageTemplate = ({ children }) => {
   return (
@@ -8,6 +9,7 @@ const PageTemplate = ({ children }) => {
       <main>
         {children}
       </main>
+      <Footer />
     </div>
   );
 };

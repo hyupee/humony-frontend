@@ -17,6 +17,23 @@
   }
 }
 
+.icon_wrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+  img {
+    position: relative;
+
+    margin: 0 8px;
+    &:nth-child(2) {
+      top: 60px;
+    }
+  }
+}
+
 
 #section_1 {
   background: linear-gradient(rgba(#5f3dc4, .5), rgba(#5f3dc4, 0.1)), url('../../assets/images/5.jpg') center no-repeat;

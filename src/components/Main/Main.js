@@ -9,7 +9,12 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 
 import CardImage from '../../assets/images/3.jpeg';
 import CardImage2 from '../../assets/images/jfl.jpg';
+import CardImage3 from '../../assets/images/cut.jpg';
 import smileImage from '../../assets/images/smile.jpg';
+
+import Youtube from '../../assets/images/youtube.png';
+import Powerpoint from '../../assets/images/powerpoint.png';
+import Poster from '../../assets/images/poster.png';
 
 const useStyles = makeStyles({
   card: {
@@ -33,6 +38,16 @@ const useStyles = makeStyles({
     right: 30,
     margin: 'auto'
   },
+  cardLeft: {
+    padding: 5,
+    maxWidth: 345,
+    height: 300,
+    position: 'absolute',
+    top: 55,
+    bottom: 0,
+    left: 0,
+    margin: 'auto'
+  }
 });
 
 
@@ -77,13 +92,29 @@ const Main = () => {
       <MainSection.Section3>
         <div className="section_title_box ta-r">
           <h2 className="section_title">어렵고 비싼 툴 없이도<br />손쉽게 자르기!</h2>
-          <p className="section_title_sub">기존에 있는 이미지 분할 도구들은 비싸고 사용하기가 어려워 진입장벽이 높았지만<br /> PICXY는 간단하고 무료로 툴을 제공해 사진을 업로드 하기만 하면 끝! </p>
+          <p className="section_title_sub">사용하기 어려운 도구는 이제 그만!<br /> PICXY로 쉽고 간단하게 자르기</p>
+
+          <Card className={classes.cardLeft}>
+            <CardMedia
+              component="img"
+              alt="Contemplative Reptile"
+              height="290"
+              image={CardImage3}
+              title="Contemplative Reptile"
+            />
+          </Card>
         </div>
       </MainSection.Section3>
       <MainSection.Section4>
         <div className="section_title_box">
           <h2 className="section_title">나만의 스티커, <br/>나만의 이미지</h2>
-          <p className="section_title_sub">프레젠테이션, 유튜브 영상 썸네일, 포스터나 웹사이트에 사용될 배경 이미지를 만들 때 남들과 차별화된 나만의 이미지와 스티커로! </p>
+          <p className="section_title_sub">프레젠테이션, 유튜브 영상 썸네일, 포스터등등<br /> 배경 이미지를 만들 때 남들과 차별화된 나만의 이미지와 스티커로! </p>
+
+          <div className="icon_wrapper">
+            <img src={Youtube} alt="youtube" width="100" />
+            <img src={Powerpoint} alt="powerpoint" width="100" />
+            <img src={Poster} alt="poster" width="100" />
+          </div>
         </div>
       </MainSection.Section4>
     </>
