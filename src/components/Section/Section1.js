@@ -1,16 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import * as Common from '../Common';
 import './Section.scss';
 
-const VhSection = styled.section`
-  width: 100%;
-  height: 100vh;
-`;
-
-export const Section1 = ({ children }) => {
+export const Section1 = () => {
   return (
-    <VhSection id="section_1">
-      {children}
-    </VhSection>
+    <Common.SectionVH id="section_1">
+      <div className="main_info">
+        <h2 className="main_title">당신의 사진을 분할해 드립니다.</h2>
+        <Link to="/picxy" className="btn btn-main">시작하기</Link>
+      </div>
+    </Common.SectionVH>
   );
 };

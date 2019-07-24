@@ -1,8 +1,9 @@
 import React from 'react';
+import './Picxy.scss';
 
 const Picxy = () => {
   return (
-    <div>1234</div>
+    <div className="picxy_wrap"></div>
   );
 }
 

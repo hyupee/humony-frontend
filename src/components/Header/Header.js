@@ -14,17 +14,27 @@ const Header = (props) => {
     { name: '사진 분할', href: '/picxy' },
   ];
 
-  console.log(props);
-
-  //console.log(props.location.pathname);
-
-  window.addEventListener('scroll', e => {
-    setMenuFixed(window.pageYOffset >= 150);
-  });
-
   useEffect(() => {
-    console.log(menuFixed);
-  }, [menuFixed]);
+    const scrollCallBack = window.addEventListener('scroll', () => {
+      console.log('offset', window.pageYOffset <= 150);
+      if (window.pageYOffset <= 150) {
+        console.log('_____________________top', menuFixed);
+        if (!menuFixed) {
+          setMenuFixed(true);
+        }
+      } else {
+        console.log('_____________________bottom', menuFixed);
+        if (menuFixed) {
+          setMenuFixed(false);
+        }
+      }
+    });
+
+    return () => {
+      window.removeEventListener('scroll', scrollCallBack)
+    }
+  }, []);
+
   
   return (
     <header className={ `${menuFixed ? 'menu_fixed' : '' }` }>
