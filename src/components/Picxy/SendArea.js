@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { IoIosAddCircleOutline as UploadIcon } from 'react-icons/io';
+import swal from 'sweetalert';
+
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { green } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
-import swal from 'sweetalert';
 
 import FileImage from '../../assets/images/pictures.png';
+
+import * as api from '../../lib/api';
 
 import './SendArea.scss';
 
@@ -34,7 +40,19 @@ const useStyles = makeStyles(theme => ({
   filesize: {
    fontSize: 14,
    fontWeigh: 300 
-  }
+  },
+  wrapper: {
+    margin: theme.spacing(1),
+    position: 'relative',
+  },
+  buttonProgress: {
+    color: green[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
 }));
 
 
@@ -90,6 +108,11 @@ const FileBox = ({ name, size }) => {
 const SendArea = ({ changeStage }) => {
   const [Selected, setSelected] = useState(false);
   const [fileData, setFileData] = useState(defaultFileData);
+  const [formData, setFormData] = useState(defaultFileData);
+  const [loading, setLoading] = useState(false);
+  const timer = React.useRef();
+
+  const classes = useStyles();
 
   const _handleChange = async (e) => {
     const files = Array.from(e.target.files);
@@ -109,22 +132,51 @@ const SendArea = ({ changeStage }) => {
         fileSize: bytesToSize(files[0].size)
       });
 
+      await setFormData(formData);
+
       await setSelected(true);
 		}
   }
 
-  const _handleUpload = () => {
-    swal('업로드 성공', '이미지 업로드에 성공했습니다.', 'success');
-    changeStage(2);
+  const _handleUpload = async () => {
+    try {
+      setLoading(true);
+
+      //console.log(api);
+
+      const result = await api.sendImage(formData);
+      
+      swal('업로드 성공', '이미지 업로드에 성공했습니다.', 'success');
+
+      //setLoading(false);
+      //changeStage(2);
+    } catch (err) {
+      swal('업로드 실패', '이미지 업로드에 실패했습니다.', 'error');
+      
+      setLoading(false);
+    }
   }
 
   return (
     <div className="send_area">
       <div className={ `send_box ${!Selected && 'dashed'}`}>
-        {
-          !Selected 
-            ? <><UploadBox /> <label className="btn" htmlFor="file_input">업로드할 파일을 선택하세요</label></>
-            : <><FileBox name={fileData.fileName} size={fileData.fileSize} /><button className="btn" onClick={_handleUpload}>업로드 시작</button></>
+        {!Selected 
+          ? <><UploadBox /> <label className="btn" htmlFor="file_input">업로드할 파일을 선택하세요</label></>
+          : <>
+              <FileBox name={fileData.fileName} size={fileData.fileSize} />
+              <div className={classes.wrapper}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className="btn"
+                  disabled={loading}
+                  onClick={_handleUpload}
+                >
+                  업로드 시작
+                </Button>
+                {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+              </div>
+            </>
         }
         <input type="file" id="file_input" accept="image/png, image/jpeg, image/jpg" onChange={_handleChange} />
       </div>
