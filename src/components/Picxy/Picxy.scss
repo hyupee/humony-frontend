@@ -1,5 +1,7 @@
 .picxy_wrap {
-  width: 100%;
-  height: 100vh;
-  background: #5f3dc4;
+  background: linear-gradient(rgba(#5f3dc4, .9) 80%, rgba(#5f3dc4, .8)), url('../../assets/images/sky1.jpeg') center no-repeat;
+  background-size: cover;
+  //background: #5f3dc4;
+  display: flex;
+  align-items: center;
 }
