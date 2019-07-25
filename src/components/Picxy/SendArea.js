@@ -65,7 +65,7 @@ const defaultFileData = {
 const bytesToSize = (bytes) => {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
 
-  if (bytes == 0) return '0 Byte';
+  if (bytes === 0) return '0 Byte';
 
   const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
 
@@ -85,7 +85,6 @@ const UploadBox = () => {
 };
 
 const FileBox = ({ name, size }) => {
-  console.log(name, size);
   const classes = useStyles();
 
   return (
@@ -110,7 +109,6 @@ const SendArea = ({ changeStage }) => {
   const [fileData, setFileData] = useState(defaultFileData);
   const [formData, setFormData] = useState(defaultFileData);
   const [loading, setLoading] = useState(false);
-  const timer = React.useRef();
 
   const classes = useStyles();
 
@@ -138,14 +136,21 @@ const SendArea = ({ changeStage }) => {
 		}
   }
 
-  const _handleUpload = async () => {
+  const _handleUpload = async (type) => {
     try {
       setLoading(true);
 
       //console.log(api);
+      if (type === 'test') {
+        const result = {
+          before: '',
+          ing: '',
+          color_list: '[[0,0,0], [0,64,0], [128,0,0], [0,0,128]]'
+        };
+      } else {
+        const result = await api.sendImage(formData);
+      }
 
-      const result = await api.sendImage(formData);
-      
       swal('업로드 성공', '이미지 업로드에 성공했습니다.', 'success');
 
       //setLoading(false);

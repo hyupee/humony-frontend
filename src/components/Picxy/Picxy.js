@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import * as Common from '../Common';
 
 import SendArea from './SendArea';
+import Preview from './Preview';
 
 import './Picxy.scss';
 
@@ -15,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Picxy = () => {
-  const [stage, setStage] = useState(1);
+  const [stage, setStage] = useState(2);
   const classes = useStyles();
 
   return (
@@ -26,10 +27,10 @@ const Picxy = () => {
             switch (stage) {
               case 1:
                 return <SendArea changeStage={setStage} />
-                break;
               case 2:
-                return <div>124</div>
-                break;
+                return <Preview />
+              default:
+                // do nothing
             }
           })()}
         </Paper>
