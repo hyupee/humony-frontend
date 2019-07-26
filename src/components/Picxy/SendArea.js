@@ -104,7 +104,7 @@ const FileBox = ({ name, size }) => {
 };
 
 
-const SendArea = ({ changeStage }) => {
+const SendArea = ({ changeStage, returnResult }) => {
   const [Selected, setSelected] = useState(false);
   const [fileData, setFileData] = useState(defaultFileData);
   const [formData, setFormData] = useState(defaultFileData);
@@ -138,23 +138,26 @@ const SendArea = ({ changeStage }) => {
 
   const _handleUpload = async (type) => {
     try {
+      let result;
       setLoading(true);
 
       //console.log(api);
       if (type === 'test') {
-        const result = {
-          before: '',
-          ing: '',
+        result = {
+          before: '1',
+          ing: '2',
           color_list: '[[0,0,0], [0,64,0], [128,0,0], [0,0,128]]'
         };
       } else {
-        const result = await api.sendImage(formData);
+        result = await api.sendImage(formData);
       }
 
       swal('업로드 성공', '이미지 업로드에 성공했습니다.', 'success');
 
-      //setLoading(false);
-      //changeStage(2);
+      returnResult(result);
+
+      setLoading(false);
+      changeStage(2);
     } catch (err) {
       swal('업로드 실패', '이미지 업로드에 실패했습니다.', 'error');
       
@@ -175,7 +178,7 @@ const SendArea = ({ changeStage }) => {
                   color="primary"
                   className="btn"
                   disabled={loading}
-                  onClick={_handleUpload}
+                  onClick={() => _handleUpload('test')}
                 >
                   업로드 시작
                 </Button>
