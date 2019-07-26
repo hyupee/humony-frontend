@@ -20,13 +20,19 @@ const useStyles = makeStyles(theme => ({
   card: {
     display: 'flex',
     padding: 12,
-    width: '50%',
-    marginBottom: 100
+    width: '100%',
+    marginBottom: 100,
+    transition: 'background-color .2s',
+    '&:hover': {
+      backgroundColor: '#efefef',
+      cursor: 'pointer'
+    }
   },
   details: {
     display: 'flex',
     flexDirection: 'column',
-    paddingLeft: 10
+    paddingLeft: 20,
+    width: '85%',
   },
   cover: {
     width: 32,
@@ -35,7 +41,11 @@ const useStyles = makeStyles(theme => ({
   filename: {
     fontSize: 15,
     margin: 0,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    width: '100%',
   },
   filesize: {
    fontSize: 14,
@@ -95,18 +105,19 @@ const FileBox = ({ name, size }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
-      <CardMedia
-        className={classes.cover}
-        image={FileImage}
-        title="Live from space album cover"
-      />
-      <div className={classes.details}>
-        <Typography gutterBottom variant="h5" component="h2" className={classes.filename}>{ name }</Typography>
-        <Typography variant="body2" color="textSecondary" component="p" className={classes.filesize}>{ size }</Typography>
-      </div>
-      
-    </Card>
+    <label className="file_box_label" htmlFor="file_input">
+      <Card className={classes.card}>
+        <CardMedia
+          className={classes.cover}
+          image={FileImage}
+          title="Live from space album cover"
+        />
+        <div className={classes.details}>
+          <Typography gutterBottom variant="h5" component="h2" className={classes.filename}>{ name }</Typography>
+          <Typography variant="body2" color="textSecondary" component="p" className={classes.filesize}>{ size }</Typography>
+        </div>
+      </Card>
+    </label>
   );
 };
 

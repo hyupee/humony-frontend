@@ -79,7 +79,7 @@ const Preview = ({ origin, segment, color_list, returnResult }) => {
   const checkList = newColorList.map((color, idx) => {
     return {
       checked: false, 
-      color: `rgba(${color.join(',')}, .8)`,
+      color: `rgba(${color.reverse().join(',')}, .8)`,
       idx: idx + 1,
     };
   });
