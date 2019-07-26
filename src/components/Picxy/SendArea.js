@@ -45,6 +45,13 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     position: 'relative',
   },
+  button: {
+    backgroundColor: '#5f3dc4',
+    color: '#fff',
+    '&:hover': {
+      background: '#4e32a0'
+    }
+  },
   buttonProgress: {
     color: green[500],
     position: 'absolute',
@@ -141,7 +148,6 @@ const SendArea = ({ changeStage, returnResult }) => {
       let result;
       setLoading(true);
 
-      //console.log(api);
       if (type === 'test') {
         result = {
           before: '1',
@@ -154,7 +160,7 @@ const SendArea = ({ changeStage, returnResult }) => {
 
       swal('업로드 성공', '이미지 업로드에 성공했습니다.', 'success');
 
-      returnResult(result);
+      await returnResult(result);
 
       setLoading(false);
       changeStage(2);
@@ -176,9 +182,9 @@ const SendArea = ({ changeStage, returnResult }) => {
                 <Button
                   variant="contained"
                   color="primary"
-                  className="btn"
+                  className={ `btn ${classes.button}`}
                   disabled={loading}
-                  onClick={() => _handleUpload('test')}
+                  onClick={() => _handleUpload()}
                 >
                   업로드 시작
                 </Button>

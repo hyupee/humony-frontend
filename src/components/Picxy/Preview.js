@@ -1,14 +1,42 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { green } from '@material-ui/core/colors';
+import { makeStyles } from '@material-ui/core/styles';
 import * as api from '../../lib/api';
 
 import './Preview.scss';
 
 import img from '../../assets/images/jfl.jpg';
 import swal from 'sweetalert';
+
+const useStyles = makeStyles(theme => ({
+  wrapper: {
+    margin: theme.spacing(1),
+    position: 'relative',
+  },
+  button: {
+    width: '100%',
+    backgroundColor: '#5f3dc4',
+    color: '#fff',
+    '&:hover': {
+      background: '#4e32a0'
+    }
+  },
+  buttonProgress: {
+    color: green[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
+}));
+
 
 const ColorCheckBox = ({ color, checked, index, handleChecked }) => {
   const ColorBadge = styled.span`
@@ -36,10 +64,12 @@ const ColorList =  ({ checkList, handleChecked }) => {
 };
 
 const Preview = ({ origin, segment, color_list, returnResult }) => {
+  const classes = useStyles();
+  const [loading, setLoading] = useState(false);
   const downloadData = {
     before: origin,
     ing: segment,
-    color_list,
+    color_list: JSON.parse(color_list),
   };
 
   const newColorList = JSON.parse(color_list);
@@ -77,20 +107,23 @@ const Preview = ({ origin, segment, color_list, returnResult }) => {
 
     downloadData.color_sel = checked_list.map(o => o.idx).join('');
 
-    console.log(downloadData);
-
     if (type !== 'test') {
+      setLoading(true);
+
       const result = await api.sendColor(downloadData);
+
+      setLoading(false);
 
       swal('다운로드 성공', '다운로드에 성공했습니다.', 'success');
 
       returnResult(result);
+      window.open(result.data.after);
     } else {
       const result = 'donwload result';
 
       swal('다운로드 성공', '다운로드에 성공했습니다.', 'success');
 
-      returnResult(result);
+      returnResult(result.data);
     }
     
   }
@@ -98,10 +131,10 @@ const Preview = ({ origin, segment, color_list, returnResult }) => {
   const CoverImage = styled.div`
     width: 100%;
     height: 90%;
-    background: #333;
     opacity: .8;
-    /* background-image: url(${segment}); */
-    background-size: cover;
+    background-image: url(${segment});
+    background-size: 100%;
+    background-repeat: no-repeat;
     position: absolute;
     z-index: 99;
   `;
@@ -109,9 +142,10 @@ const Preview = ({ origin, segment, color_list, returnResult }) => {
   const PreviewImage = styled.div`
     width: 100%;
     height: 90%;
-    /* background-image: url(${origin}); */
-    background-image: url(${img});
-    background-size: cover;
+    background-image: url(${origin});
+    /* background-image: url(${img}); */
+    background-size: 100%;
+    background-repeat: no-repeat;
     position: absolute;
     left: 0;
     top: 0;
@@ -125,7 +159,20 @@ const Preview = ({ origin, segment, color_list, returnResult }) => {
           <div className="img_preview">
             <CoverImage />
             <PreviewImage />
-            <button className="btn" onClick={() => handleDownload('test')}>다운로드</button>
+            <div className="button_wrapper">
+              <div className={classes.wrapper}>
+                <Button
+                  variant="contained"
+                  className={ `btn ${classes.button}`}
+                  disabled={loading}
+                  onClick={() => handleDownload()}
+                >
+                  다운로드
+                </Button>
+                {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+                </div>
+              {/* <button className="btn" onClick={() => handleDownload()}>다운로드</button> */}
+            </div>
           </div>
           
         </Grid>

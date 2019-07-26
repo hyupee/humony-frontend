@@ -21,10 +21,6 @@ const Picxy = () => {
   const [stageResult2, setStageResult2] = useState({});
   const classes = useStyles();
 
-  useEffect(() => {
-    console.log(stageResult2);
-  }, [stageResult2]);
-
   return (
     <>
       <Common.SectionVH className="picxy_wrap">
@@ -35,7 +31,7 @@ const Picxy = () => {
                 case 1:
                   return <SendArea changeStage={setStage} returnResult={setStageResult1} />
                 case 2:
-                  return <Preview origin={stageResult1.before} segment={stageResult1.ing} color_list={stageResult1.color_list} returnResult={setStageResult2} />
+                  return <Preview origin={stageResult1.data.before} segment={stageResult1.data.ing} color_list={stageResult1.data.color_list} returnResult={setStageResult2} />
                 default:
                   // do nothing
               }
