@@ -10,8 +10,8 @@
 ## 실행
 
 ```shell
-git clone https://github.com/prography/5th-fourman-front.git
-cd 5th-fourman-front
+git clone https://github.com/sanghup1234/humony-frontend
+cd humony-frontend
 yarn
 yarn start
 ```
